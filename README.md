@@ -1,6 +1,7 @@
 # Projeto de Estudo com pesquisa IA: Classificador de Imagens com CNN e TensorFlow/Keras 
 
 Este repositório serve como um material de estudo prático sobre os fundamentos de Visão Computacional e Deep Learning, aplicando os conceitos na construção de uma Rede Neural Convolucional (CNN) para classificar a saúde de plantas.
+Material de estudo: [Kaggle - Plant Disease Classification](https://www.kaggle.com/code/atharvaingle/plant-disease-classification-resnet-99-2/input)
 
 ## 🎯 Objetivo do Estudo
 
