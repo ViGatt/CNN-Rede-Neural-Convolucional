@@ -48,4 +48,3 @@ validacao_dataset = validation_datagenerator.flow_from_directory(
 )
 
 print("Classes encontradas:", treinamento_dataset.class_indices)
-
