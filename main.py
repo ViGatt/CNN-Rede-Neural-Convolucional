@@ -7,38 +7,44 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
 # Caminho para a pasta de dados local
-dataset_dir = "data/train" 
-validation_dir = "data/test" 
+train_dir = "data/train" 
+validation_dir = "data/test"
 img_height, img_width = 224, 224
 batch_size = 32
-
-# Remover pastas desnecessárias que podem atrapalhar o gerador de imagens
-for root, dirs, files in os.walk(dataset_dir):
-    for dir_name in dirs:
-        if dir_name == ".ipynb_checkpoints":
-            shutil.rmtree(os.path.join(root, dir_name))
-            print(f"Removido: {os.path.join(root, dir_name)}")
+epochs = 30
 
 # Criar gerador de dados para treinamento e validação
+
+train_datagenerator = ImageDataGenerator(
+    rescale=1./255,
+    rotation_range=40,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    shear_range=0.2,
+    zoom_range=0.2,
+    horizontal_flip=True,
+    fill_mode='nearest'
+)
+
+validation_datagenerator = ImageDataGenerator(rescale=1./255)
+
 datagenerator = ImageDataGenerator(
     rescale=1./255,
     validation_split=0.2 
 )
 
-treinamento_dataset = datagenerator.flow_from_directory(
-    directory=dataset_dir,
+treinamento_dataset = train_datagenerator.flow_from_directory(
+    directory=train_dir,
     target_size=(img_height, img_width),
     batch_size=batch_size,
-    class_mode='categorical',
-    subset='training' 
+    class_mode='categorical'
 )
 
-validacao_dataset = datagenerator.flow_from_directory(
-    directory=dataset_dir,
+validacao_dataset = validation_datagenerator.flow_from_directory(
+    directory=validation_dir,
     target_size=(img_height, img_width),
     batch_size=batch_size,
-    class_mode='categorical',
-    subset='validation' 
+    class_mode='categorical'
 )
 
 print("Classes encontradas:", treinamento_dataset.class_indices)
