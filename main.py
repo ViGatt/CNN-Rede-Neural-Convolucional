@@ -7,7 +7,8 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
 # Caminho para a pasta de dados local
-dataset_dir = "dados" 
+dataset_dir = "data/train" 
+validation_dir = "data/test" 
 img_height, img_width = 224, 224
 batch_size = 32
 
