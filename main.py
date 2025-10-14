@@ -48,3 +48,19 @@ validacao_dataset = validation_datagenerator.flow_from_directory(
 )
 
 print("Classes encontradas:", treinamento_dataset.class_indices)
+
+modelo = Sequential([
+    # Camada de Convolução 1
+    Conv2D(32, (3, 3), activation='relu', input_shape=(img_height, img_width, 3)),
+    MaxPooling2D(2, 2),
+
+    # Camada de Convolução 2
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D(2, 2),
+
+    # Camada de Achatamento e Camadas Densas
+    Flatten(),
+    Dense(128, activation='relu'),
+    Dropout(0.5), # Camada de Dropout para combater overfitting
+    Dense(treinamento_dataset.num_classes, activation='softmax') # Camada de saída
+])
