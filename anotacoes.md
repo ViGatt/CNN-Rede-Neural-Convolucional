@@ -1,0 +1,34 @@
+# Anotações do Projeto CNN - Classificador de Imagens
+
+Este arquivo serve como um diário de bordo e referência para entender as diferentes partes do projeto.
+
+
+## 1. Saída do Terminal (Ao executar `main.py`)
+
+Quando o script é executado, o terminal exibe várias mensagens. Nenhuma delas é um erro; são informações e confirmações.
+
+### Mensagens Informativas do TensorFlow
+- **Exemplos:**
+  - `... oneDNN custom operations are on ...`
+  - `... This TensorFlow binary is optimized to use available CPU instructions ...`
+- **O que significa:** O TensorFlow está simplesmente confirmando que está ativo e usando otimizações de hardware (CPU) para rodar de forma mais eficiente.
+- **Ação Necessária:** Nenhuma. **Isto é normal e positivo.**
+
+### Confirmação do Carregamento dos Dados
+- **Exemplo:**
+  - `Found 1730 images belonging to 11 classes.`
+  - `Found 1960 images belonging to 11 classes.`
+- **O que significa:** Esta é a confirmação mais importante. Mostra que o Keras conseguiu encontrar e carregar com sucesso as imagens das pastas `data/train` e `data/test`.
+- **Ação Necessária:** Apenas verificar se os números de imagens e classes correspondem ao esperado.
+
+### Dicionário de Classes
+- **Exemplo:** `Classes encontradas: {'0': 0, '1': 1, '10': 2, '2': 3, ...}`
+- **O que significa:** É o resultado do nosso comando `print()`. Mostra o mapeamento que o Keras criou entre o **nome da pasta** (a classe, que é um texto) e o **índice numérico** que o modelo realmente usará para os cálculos.
+- **Ação Necessária:** Nenhuma, apenas observar. Lembre-se que a ordem é **alfabética** (`'10'` vem antes de `'2'`), e não numérica.
+
+### Aviso de Usuário (`UserWarning`)
+- **Exemplo:** `... UserWarning: Do not pass an input_shape ...`
+- **O que significa:** É apenas um **aviso**, não um erro. A biblioteca Keras está sugerindo uma maneira mais moderna de escrever a primeira camada do modelo. A forma como escrevemos (`input_shape=...`) é totalmente válida, funcional e muito comum.
+- **Ação Necessária:** Nenhuma. **Pode ser ignorado com segurança.**
+
+---
