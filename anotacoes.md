@@ -31,4 +31,11 @@ Quando o script é executado, o terminal exibe várias mensagens. Nenhuma delas 
 - **O que significa:** É apenas um **aviso**, não um erro. A biblioteca Keras está sugerindo uma maneira mais moderna de escrever a primeira camada do modelo. A forma como escrevemos (`input_shape=...`) é totalmente válida, funcional e muito comum.
 - **Ação Necessária:** Nenhuma. **Pode ser ignorado com segurança.**
 
----
+## 2. Lembretes Importantes do Projeto
+
+- **Estrutura de Pastas:** O `ImageDataGenerator` exige que as imagens estejam organizadas em `data/train/NOME_DA_CLASSE` e `data/test/NOME_DA_CLASSE`.
+
+- **Ordenação das Classes:** Para evitar confusão com a ordenação alfabética (ex: "10" vindo antes de "2"), a melhor prática é renomear as pastas de classe com zeros à esquerda (ex: `00, 01, 02, ..., 09, 10`).
+
+- **Data Augmentation:** As técnicas de aumento de dados (rotação, zoom, etc.) são aplicadas **apenas** no conjunto de treinamento para ajudar o modelo a generalizar. O conjunto de validação/teste deve permanecer com as imagens originais.
+

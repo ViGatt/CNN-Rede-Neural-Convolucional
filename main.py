@@ -62,5 +62,5 @@ modelo = Sequential([
     Flatten(),
     Dense(128, activation='relu'),
     Dropout(0.5), # Camada de Dropout para combater overfitting
-    Dense(treinamento_dataset.num_classes, activation='softmax') # Camada de saída
+    Dense(treinamento_dataset.num_classes, activation='softmax') 
 ])
