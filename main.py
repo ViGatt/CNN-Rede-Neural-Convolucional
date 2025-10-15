@@ -64,6 +64,16 @@ modelo = Sequential([
     Dropout(0.5), # Camada de Dropout para combater overfitting
     Dense(treinamento_dataset.num_classes, activation='softmax') 
 ])
+# Compilar o modelo
 modelo.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
+
+# Treinar o modelo
+history = modelo.fit(
+    treinamento_dataset,
+    steps_per_epoch=len(treinamento_dataset),
+    epochs=epochs,  # Usando a variável que você já definiu
+    validation_data=validacao_dataset,
+    validation_steps=len(validacao_dataset)
+)
