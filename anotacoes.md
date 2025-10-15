@@ -39,3 +39,7 @@ Quando o script é executado, o terminal exibe várias mensagens. Nenhuma delas 
 
 - **Data Augmentation:** As técnicas de aumento de dados (rotação, zoom, etc.) são aplicadas **apenas** no conjunto de treinamento para ajudar o modelo a generalizar. O conjunto de validação/teste deve permanecer com as imagens originais.
 
+## 3. Definição do Modelo:
+
+- **1. Compilação do Modelo:** A linha `modelo.compile(...)` configura o otimizador `('adam')`, a função de perda `('categorical_crossentropy')` e as métricas `('accuracy')` que o modelo usará durante o treinamento.
+
