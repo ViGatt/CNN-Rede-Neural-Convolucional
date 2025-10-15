@@ -43,3 +43,4 @@ Quando o script é executado, o terminal exibe várias mensagens. Nenhuma delas 
 
 - **1. Compilação do Modelo:** A linha `modelo.compile(...)` configura o otimizador `('adam')`, a função de perda `('categorical_crossentropy')` e as métricas `('accuracy')` que o modelo usará durante o treinamento.
 
+- **2.Treinamento do Modelo:** A linha history = `modelo.fit(...)` inicia o treinamento, passando os conjuntos de dados de treinamento e validação, além de definir o número de épocas.
