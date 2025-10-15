@@ -5,13 +5,15 @@ import os
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+import matplotlib.pyplot as plt
+
 
 # Caminho para a pasta de dados local
 train_dir = "data/train" 
 validation_dir = "data/test"
 img_height, img_width = 224, 224
 batch_size = 32
-epochs = 30
+epochs = 10
 
 # Criar gerador de dados para treinamento e validação
 
@@ -77,3 +79,32 @@ history = modelo.fit(
     validation_data=validacao_dataset,
     validation_steps=len(validacao_dataset)
 )
+caminho_nova_imagem = 'data/test/Soybean_healthy/001.jpg'
+nova_imagem = tf.keras.preprocessing.image.load_img(caminho_nova_imagem, target_size=(img_height, img_width))
+nova_imagem = tf.keras.preprocessing.image.img_to_array(nova_imagem) / 255.0
+nova_imagem = np.expand_dims(nova_imagem, axis=0)
+
+previsao = modelo.predict(nova_imagem)
+classe_predita = np.argmax(previsao)
+classes = list(treinamento_dataset.class_indices.keys())
+
+print(f"Classe prevista: {classes[classe_predita]} com probabilidade {previsao[0][classe_predita]:.2f}")
+
+# Visualizar curvas de acurácia e perda
+plt.figure(figsize=(12, 5))
+
+# Acurácia
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Treinamento')
+plt.plot(history.history['val_accuracy'], label='Validação')
+plt.title('Acurácia')
+plt.legend()
+
+# Perda
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Treinamento')
+plt.plot(history.history['val_loss'], label='Validação')
+plt.title('Perda')
+plt.legend()
+
+plt.show()
