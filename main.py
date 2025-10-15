@@ -64,3 +64,6 @@ modelo = Sequential([
     Dropout(0.5), # Camada de Dropout para combater overfitting
     Dense(treinamento_dataset.num_classes, activation='softmax') 
 ])
+modelo.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
