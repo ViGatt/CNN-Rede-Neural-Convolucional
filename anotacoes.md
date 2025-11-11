@@ -44,3 +44,16 @@ Quando o script é executado, o terminal exibe várias mensagens. Nenhuma delas 
 - **1. Compilação do Modelo:** A linha `modelo.compile(...)` configura o otimizador `('adam')`, a função de perda `('categorical_crossentropy')` e as métricas `('accuracy')` que o modelo usará durante o treinamento.
 
 - **2.Treinamento do Modelo:** A linha history = `modelo.fit(...)` inicia o treinamento, passando os conjuntos de dados de treinamento e validação, além de definir o número de épocas.
+
+## 3.1. Função remove_checkpoints:
+
+- **- Definição da Função:** `def remove_checkpoints(directory):` Define uma função modular que aceita o diretório raiz a ser limpo `(ex.: data/train` ou `data/test)`.
+- **- Docstring:** A `docstring` explica a finalidade: remover as pastas `.ipynb_checkpoints` criadas por ambientes de notebook.
+
+## 3.2 . Navegação no Sistema de Arquivos (`os.walk`): 
+
+A função utiliza o módulo `os` para percorrer toda a árvore de diretórios:
+
+* **Travessia Bottom-Up:** O parâmetro `topdown=False` em `os.walk()` garante que a varredura ocorra **de baixo para cima** (do diretório mais interno para o mais externo).
+    * **Vantagem:** Permite que a subpasta seja removida sem que o sistema tente varrer seu conteúdo posteriormente, **evitando erros**.
+* **Foco na Eficiência:** O código itera apenas sobre a lista de **diretórios** (`dirs`), ignorando a lista de arquivos (`files`), o que otimiza a performance da limpeza.
