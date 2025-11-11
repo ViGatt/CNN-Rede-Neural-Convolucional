@@ -7,13 +7,27 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 import matplotlib.pyplot as plt
 
+def remove_checkpoints(directory):
+    """Remove pastas '.ipynb_checkpoints' para evitar erros de leitura de classe."""
+    for root, dirs, files in os.walk(directory, topdown=False):
+        for dir_name in dirs:
+            if dir_name == ".ipynb_checkpoints":
+                path_to_remove = os.path.join(root, dir_name)
+                try:
+                    shutil.rmtree(path_to_remove)
+                    print(f"Removido checkpoint: {path_to_remove}")
+                except OSError as e:
+                    print(f"Erro ao remover {path_to_remove}: {e}")
 
 # Caminho para a pasta de dados local
 train_dir = "data/train" 
 validation_dir = "data/test"
 img_height, img_width = 224, 224
 batch_size = 32
-epochs = 10
+epochs = 1
+
+remove_checkpoints(train_dir)
+remove_checkpoints(validation_dir)
 
 # Criar gerador de dados para treinamento e validação
 
